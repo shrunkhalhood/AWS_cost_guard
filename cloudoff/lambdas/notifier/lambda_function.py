@@ -31,7 +31,7 @@ def lambda_handler(event, context):
 
 
 def send_zombie_alert(event):
-    """Send alert email when zombie detected"""
+
     service_id      = event.get('service_id')
     service_type    = event.get('service_type')
     region          = event.get('region')
