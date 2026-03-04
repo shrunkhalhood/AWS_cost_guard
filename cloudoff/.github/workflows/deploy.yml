@@ -1,0 +1,50 @@
+name: Deploy AWS Cost Guard Lambdas
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id:     ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region:            us-east-1
+
+      #Deploy Lambda #1
+      - name: Deploy shutdown-listener
+        run: |
+          cd lambdas/shutdown-listener
+          zip function.zip lambda_function.py
+          aws lambda update-function-code \
+            --function-name aws-cost-guard-shutdown-listener \
+            --zip-file fileb://function.zip
+
+      #Deploy Lambda #2
+      - name: Deploy zombie-checker
+        run: |
+          cd lambdas/zombie-checker
+          zip function.zip lambda_function.py
+          aws lambda update-function-code \
+            --function-name aws-cost-guard-zombie-checker \
+            --zip-file fileb://function.zip
+
+      #Deploy Lambda #3
+      - name: Deploy notifier
+        run: |
+          cd lambdas/notifier
+          zip function.zip lambda_function.py
+          aws lambda update-function-code \
+            --function-name aws-cost-guard-notifier \
+            --zip-file fileb://function.zip
+            
