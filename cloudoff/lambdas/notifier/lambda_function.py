@@ -5,8 +5,8 @@ from datetime import datetime
 # AWS clients
 sns = boto3.client('sns', region_name='us-east-1')
 
-# SNS Topic ARN — we will update this after creating SNS topic
-SNS_TOPIC_ARN = 'YOUR_SNS_TOPIC_ARN'
+
+SNS_TOPIC_ARN = 'arn:aws:sns:us-east-1:255260635688:aws-cost-guard-alerts'
 
 def lambda_handler(event, context):
     print("Notifier triggered:", json.dumps(event))
@@ -103,3 +103,4 @@ AWS Cost Guard — Automated Alert
         Message=message
     )
     print(f"Success alert sent for {service_type} {service_id}")
+
