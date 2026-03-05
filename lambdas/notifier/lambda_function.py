@@ -98,9 +98,10 @@ AWS Cost Guard — Automated Alert
     """
 
     sns.publish(
-        TopicArn=arn:aws:sns:us-east-1:255260635688:aws-cost-guard-alerts,
+        TopicArn='arn:aws:sns:us-east-1:255260635688:aws-cost-guard-alerts',
         Subject=subject,
         Message=message
     )
     print(f"Success alert sent for {service_type} {service_id}")
+
 
