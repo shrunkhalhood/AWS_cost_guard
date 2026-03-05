@@ -98,7 +98,7 @@ def get_status(event, service_type):
 
 
 def calculate_duration(service_id, record, event_time):
-    """Find the matching stopping event and calculate duration"""
+    """Find the matching stopping event, calculate duration and mark complete"""
     try:
         response = table.query(
             KeyConditionExpression=Key('service_id').eq(service_id),
@@ -115,6 +115,19 @@ def calculate_duration(service_id, record, event_time):
                 duration = int((end - start).total_seconds())
                 record['duration_seconds'] = duration
                 print(f"Duration calculated: {duration} seconds")
+
+                # ← NEW: Mark the stopping record as complete too!
+                table.update_item(
+                    Key={
+                        'service_id': service_id,
+                        'event_time': item.get('event_time')
+                    },
+                    UpdateExpression='SET shutdown_complete = :true',
+                    ExpressionAttributeValues={
+                        ':true': True
+                    }
+                )
+                print(f"Marked previous stopping record as complete")
                 break
 
     except Exception as e:
@@ -143,3 +156,4 @@ def trigger_notifier(service_id, service_type, region, duration_seconds):
 
     except Exception as e:
         print("Could not trigger notifier:", str(e))
+
