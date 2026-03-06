@@ -80,7 +80,7 @@ def get_service_id(event, service_type):
     if service_type == 'EC2':
         return detail.get('instance-id', 'unknown')
     elif service_type == 'RDS':
-        return detail.get('DbInstanceIdentifier', 'unknown')
+        return detail.get('SourceIdentifier', 'unknown')
     elif service_type == 'ECS':
         return detail.get('taskArn', 'unknown').split('/')[-1]
     return 'unknown'
@@ -91,7 +91,16 @@ def get_status(event, service_type):
     if service_type == 'EC2':
         return detail.get('state', 'unknown')
     elif service_type == 'RDS':
-        return detail.get('EventID', 'unknown')
+        # Map RDS Event IDs to simple status
+        event_id = detail.get('EventID', '')
+        if event_id == 'RDS-EVENT-0087':
+            return 'stopped'        # DB instance stopped
+        elif event_id == 'RDS-EVENT-0088':
+            return 'starting'       # DB instance starting
+        elif event_id == 'RDS-EVENT-0004':
+            return 'stopping'       # DB instance shutting down
+        else:
+            return event_id         # unknown event
     elif service_type == 'ECS':
         return detail.get('lastStatus', 'unknown')
     return 'unknown'
@@ -156,4 +165,5 @@ def trigger_notifier(service_id, service_type, region, duration_seconds):
 
     except Exception as e:
         print("Could not trigger notifier:", str(e))
+
 
