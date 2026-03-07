@@ -47,4 +47,13 @@ jobs:
           aws lambda update-function-code \
             --function-name aws-cost-guard-notifier \
             --zip-file fileb://function.zip
+
+      #Deploy Lambda #4
+      - name: Deploy idle-checker
+        run: |
+          cd lambdas/idle-checker
+          zip function.zip lambda_function.py
+          aws lambda update-function-code \
+            --function-name aws-cost-guard-idle-checker \
+            --zip-file fileb://function.zip
             
