@@ -14,7 +14,6 @@
 - [Tech Stack](#-tech-stack)
 - [Setup Instructions](#-setup-instructions)
 - [CI/CD Pipeline](#-cicd-pipeline)
-- [Future Improvements](#-future-improvements)
 
 ---
 
