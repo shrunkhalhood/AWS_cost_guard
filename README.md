@@ -12,7 +12,7 @@
 - [Workflow Scenarios](#-workflow-scenarios)
 - [Features](#-features)
 - [Tech Stack](#-tech-stack)
-- [Setup Instructions](#-setup-instructions)
+- [Setup Instructions](#setup-instructions)
 - [CI/CD Pipeline](#-cicd-pipeline)
 
 ---
@@ -193,7 +193,7 @@ Step 6: You receive email:
 
 ---
 
-## ⚙️ Setup Instructions
+##  Setup Instructions
 
 ### Prerequisites
 ```
