@@ -8,7 +8,7 @@
 - [Problem Statement](#-problem-statement)
 - [Solution](#-solution)
 - [Live Demo](#-live-demo)
-- [Architecture](#-architecture)
+- [Architecture](#architecture)
 - [Workflow Scenarios](#-workflow-scenarios)
 - [Features](#-features)
 - [Tech Stack](#-tech-stack)
@@ -64,7 +64,7 @@ AWS Cost Guard is a fully serverless monitoring tool that:
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 ![AWS Cost Guard Architecture](docs/Architecture.png)
 
