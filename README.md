@@ -11,7 +11,7 @@
 - [Architecture](#architecture)
 - [Workflow Scenarios](#-workflow-scenarios)
 - [Features](#-features)
-- [Tech Stack](#-tech-stack)
+- [Tech Stack](#--tech-stack)
 - [Setup Instructions](#setup-instructions)
 - [CI/CD Pipeline](#-cicd-pipeline)
 
