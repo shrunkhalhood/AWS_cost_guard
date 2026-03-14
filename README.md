@@ -65,7 +65,7 @@ AWS Cost Guard is a fully serverless monitoring tool that:
 
 ## Architecture
 
-![AWS Cost Guard Architecture](docs/Architecture.png)
+![AWS Cost Guard Architecture](docs/Architecture_1.png)
 
 
 
